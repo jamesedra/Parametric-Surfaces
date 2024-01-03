@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgb(53, 53, 53); width: 350px; height: 290px; flex-direction: column; align-items: stretch; min-width: auto; min-height: auto; max-height: 290px; max-width: none; transform-origin: center; align-self: flex-start; justify-content: flex-start; margin-top: 50px; margin-bottom: 0; padding-top: 20px; padding-right: 20px; padding-left: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-bottom: 20px; margin-right: 0; margin-left: 20px; color: rgb(159, 159, 159);">
+        <ui:SliderInt picking-mode="Ignore" label="Resolution" value="1000" high-value="1000" name="Resolution" low-value="10" show-input-field="true" />
+        <ui:DropdownField label="Function" index="0" choices="Wave, Multi Wave, Ripple, Circling, Cylindering, Mobius Strip, Sphere, Hour Glass, Varied Sphere, Twisted Sphere, Torus" name="Function" style="border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;" />
+        <ui:RadioButtonGroup label="Transition Mode" value="0" choices="Cycle, Random" focusable="true" name="TransitionMode" />
+        <ui:IntegerField label="Function Duration" value="3" name="FunctionDuration" />
+        <ui:IntegerField label="Transition Duration" value="1" name="TransitionDuration" />
+    </ui:VisualElement>
+</ui:UXML>

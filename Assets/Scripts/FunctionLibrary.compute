@@ -1,0 +1,427 @@
+#pragma kernel WaveKernel
+#pragma kernel WaveToMultiWaveKernel
+#pragma kernel WaveToRippleKernel
+#pragma kernel WaveToCirclingKernel
+#pragma kernel WaveToCylinderingKernel
+#pragma kernel WaveToMobiusStripKernel
+#pragma kernel WaveToSphereKernel
+#pragma kernel WaveToHourGlassKernel
+#pragma kernel WaveToVariedSphereKernel
+#pragma kernel WaveToTwistedSphereKernel
+#pragma kernel WaveToTorusKernel
+
+
+#pragma kernel MultiWaveToWaveKernel
+#pragma kernel MultiWaveKernel
+#pragma kernel MultiWaveToRippleKernel
+#pragma kernel MultiWaveToCirclingKernel
+#pragma kernel MultiWaveToCylinderingKernel
+#pragma kernel MultiWaveToMobiusStripKernel
+#pragma kernel MultiWaveToSphereKernel
+#pragma kernel MultiWaveToHourGlassKernel
+#pragma kernel MultiWaveToVariedSphereKernel
+#pragma kernel MultiWaveToTwistedSphereKernel
+#pragma kernel MultiWaveToTorusKernel
+
+
+#pragma kernel RippleToWaveKernel
+#pragma kernel RippleToMultiWaveKernel
+#pragma kernel RippleKernel
+#pragma kernel RippleToCirclingKernel
+#pragma kernel RippleToCylinderingKernel
+#pragma kernel RippleToMobiusStripKernel
+#pragma kernel RippleToSphereKernel
+#pragma kernel RippleToHourGlassKernel
+#pragma kernel RippleToVariedSphereKernel
+#pragma kernel RippleToTwistedSphereKernel
+#pragma kernel RippleToTorusKernel
+
+
+#pragma kernel CirclingToWaveKernel
+#pragma kernel CirclingToMultiWaveKernel
+#pragma kernel CirclingToRippleKernel
+#pragma kernel CirclingKernel
+#pragma kernel CirclingToCylinderingKernel
+#pragma kernel CirclingToMobiusStripKernel
+#pragma kernel CirclingToSphereKernel
+#pragma kernel CirclingToHourGlassKernel
+#pragma kernel CirclingToVariedSphereKernel
+#pragma kernel CirclingToTwistedSphereKernel
+#pragma kernel CirclingToTorusKernel
+
+
+#pragma kernel CylinderingToWaveKernel
+#pragma kernel CylinderingToMultiWaveKernel
+#pragma kernel CylinderingToRippleKernel
+#pragma kernel CylinderingToCirclingKernel
+#pragma kernel CylinderingKernel
+#pragma kernel CylinderingToMobiusStripKernel
+#pragma kernel CylinderingToSphereKernel
+#pragma kernel CylinderingToHourGlassKernel
+#pragma kernel CylinderingToVariedSphereKernel
+#pragma kernel CylinderingToTwistedSphereKernel
+#pragma kernel CylinderingToTorusKernel
+
+#pragma kernel MobiusStripToWaveKernel
+#pragma kernel MobiusStripToMultiWaveKernel
+#pragma kernel MobiusStripToRippleKernel
+#pragma kernel MobiusStripToCirclingKernel
+#pragma kernel MobiusStripToCylinderingKernel
+#pragma kernel MobiusStripKernel
+#pragma kernel MobiusStripToSphereKernel
+#pragma kernel MobiusStripToHourGlassKernel
+#pragma kernel MobiusStripToVariedSphereKernel
+#pragma kernel MobiusStripToTwistedSphereKernel
+#pragma kernel MobiusStripToTorusKernel
+
+#pragma kernel SphereToWaveKernel
+#pragma kernel SphereToMultiWaveKernel
+#pragma kernel SphereToRippleKernel
+#pragma kernel SphereToCirclingKernel
+#pragma kernel SphereToCylinderingKernel
+#pragma kernel SphereToMobiusStripKernel
+#pragma kernel SphereKernel
+#pragma kernel SphereToHourGlassKernel
+#pragma kernel SphereToVariedSphereKernel
+#pragma kernel SphereToTwistedSphereKernel
+#pragma kernel SphereToTorusKernel
+
+
+#pragma kernel HourGlassToWaveKernel
+#pragma kernel HourGlassToMultiWaveKernel
+#pragma kernel HourGlassToRippleKernel
+#pragma kernel HourGlassToCirclingKernel
+#pragma kernel HourGlassToCylinderingKernel
+#pragma kernel HourGlassToMobiusStripKernel
+#pragma kernel HourGlassToSphereKernel
+#pragma kernel HourGlassKernel
+#pragma kernel HourGlassToVariedSphereKernel
+#pragma kernel HourGlassToTwistedSphereKernel
+#pragma kernel HourGlassToTorusKernel
+
+
+#pragma kernel VariedSphereToWaveKernel
+#pragma kernel VariedSphereToMultiWaveKernel
+#pragma kernel VariedSphereToRippleKernel
+#pragma kernel VariedSphereToCirclingKernel
+#pragma kernel VariedSphereToCylinderingKernel
+#pragma kernel VariedSphereToMobiusStripKernel
+#pragma kernel VariedSphereToSphereKernel
+#pragma kernel VariedSphereToHourGlassKernel
+#pragma kernel VariedSphereKernel
+#pragma kernel VariedSphereToTwistedSphereKernel
+#pragma kernel VariedSphereToTorusKernel
+
+
+#pragma kernel TwistedSphereToWaveKernel
+#pragma kernel TwistedSphereToMultiWaveKernel
+#pragma kernel TwistedSphereToRippleKernel
+#pragma kernel TwistedSphereToCirclingKernel
+#pragma kernel TwistedSphereToCylinderingKernel
+#pragma kernel TwistedSphereToMobiusStripKernel
+#pragma kernel TwistedSphereToSphereKernel
+#pragma kernel TwistedSphereToHourGlassKernel
+#pragma kernel TwistedSphereToVariedSphereKernel
+#pragma kernel TwistedSphereKernel
+#pragma kernel TwistedSphereToTorusKernel
+
+
+#pragma kernel TorusToWaveKernel
+#pragma kernel TorusToMultiWaveKernel
+#pragma kernel TorusToRippleKernel
+#pragma kernel TorusToCirclingKernel
+#pragma kernel TorusToCylinderingKernel
+#pragma kernel TorusToMobiusStripKernel
+#pragma kernel TorusToSphereKernel
+#pragma kernel TorusToHourGlassKernel
+#pragma kernel TorusToVariedSphereKernel
+#pragma kernel TorusToTwistedSphereKernel
+#pragma kernel TorusKernel
+
+
+#define PI 3.14159265358979323846
+
+RWStructuredBuffer<float3> _Positions;
+uint _Resolution;
+float _Step, _Time, _TransitionProgress;
+
+float2 GetUV (uint3 id) {
+	return (id.xy + 0.5) * _Step - 1.0;
+}
+
+void SetPosition (uint3 id, float3 position) {
+	if (id.x < _Resolution && id.y < _Resolution) {
+		_Positions[id.x + id.y * _Resolution] = position;
+	}
+}
+
+float3 Wave (float u, float v, float t) {
+	float3 p;
+	p.x = u;
+	p.y = sin(PI * (u + v + t));
+	p.z = v;
+	return p;
+}
+
+float3 MultiWave (float u, float v, float t) {
+
+    float3 p;
+    p.x = u;
+    p.y = sin(PI * (u + 0.5 * t));
+    p.y += 0.5f * sin(2.0 * PI * (v + t));
+    p.y += sin(PI * (u + v + 0.25 * t));
+    p.y *= 1.0 / 2.5;
+    p.z = v;
+    return p;
+}
+
+float3 Ripple(float u, float v, float t) {
+    // float d is distance
+    float d = sqrt(u * u + v * v);
+    float3 p;
+    p.x = u;
+    p.y = sin(PI * (4.0 * d - t));
+    p.y /= 1.0 + 10.0 * d;
+    p.z = v;
+    return p;
+}
+
+
+float3 Circling(float u, float v, float t) {
+    float3 p;
+    p.x = sin(PI * u + (t * 0.5));
+    p.y = 0.0;
+    p.z = cos(PI * u + (t * 0.5));
+    return p;
+}
+
+float3 Cylindering(float u, float v, float t) {
+    float3 p;
+    p.x = sin(PI * u + (t * 0.5));
+    p.y = v + sin(PI * u + (t * 0.5)) * sin(PI * u + (t * 0.5));
+    p.y += sin(PI * (u + t * 0.5));
+    p.y *= 0.5;
+    p.z = cos(PI * u + (t * 0.5));
+    return p;
+}
+
+float3 HourGlass(float u, float v, float t) {
+    // float r is radius
+    float r = cos(0.5 * PI * v + (t * 0.5));
+    float3 p;
+    p.x = r * sin(PI * u + (t * 0.2));
+    p.y = v;
+    p.z = r * cos(PI * u + (t * 0.2));
+    return p;
+}
+
+float3 Sphere(float u, float v, float t) {
+    float r = 0.5 + 0.5 * sin(PI * t * 0.5);
+    // float s manipulates surface of the sphere
+    float s = r * cos(0.5f * PI * v);
+    float3 p;
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * 0.5 * v);
+    p.z = s * cos(PI * u);
+    return p;
+}
+
+float3 VariedSphere(float u, float v, float t) {
+    float r = 0.9 + 0.1 * sin(8.0 * PI * u);
+    float s = r * cos(0.3 * PI * (3.0 * u + 2.0 * v + t));
+    float3 p;
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * 0.5 * v);
+    p.z = s * cos(PI * u);
+    return p;
+}
+
+float3 TwistedSphere(float u, float v, float t) {
+    float r = 0.9 + 0.1 * sin(PI * (12.0 * u + 8.0 * v + t));
+    float s = r * cos(0.5 * PI * v);
+    float3 p;
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * 0.5 * v);
+    p.z = s * cos(PI * u);
+    return p;
+}
+
+float3 Torus (float u, float v, float t) {
+    // float r = 1f;
+    float outRad = 0.7 + 0.1 * sin(PI * (8.0 * u + 0.5 * t));
+    float inRad = 0.15 + 0.05 * sin(PI * (16.0 * u + 8.0 * v + 3.0 * t));
+    float s = outRad + inRad * cos(PI * v);
+    float3 p;
+    p.x = s * sin(PI * u);
+    p.y = inRad * sin(PI * v);
+    p.z = s * cos(PI * u);
+    return p;
+}
+
+float3 MobiusStrip(float u, float v, float t) {
+    float3 p;
+    float stripWidth = 0.3;
+    float r = 0.8;
+    p.x = (r + stripWidth * v * cos(PI * u + (0.5 * t))) * cos(PI * u + (0.15 * t));
+    p.y = (r + stripWidth * v * cos(PI * u + (0.5 * t))) * sin(PI * u + (0.15 * t));
+    p.z = stripWidth * v * sin(PI * u + (0.5 * t));
+
+    // scale
+    p.x *= 1.5;
+    p.y *= 1.5;
+    p.z *= 1.5;
+    return p;
+}
+
+#define KERNEL_FUNCTION(function) \
+    [numthreads(8, 8, 1)] \
+    void function##Kernel (uint3 id: SV_DispatchThreadID) { \
+	    float2 uv = GetUV(id); \
+	    SetPosition(id, function(uv.x, uv.y, _Time)); \
+    }
+
+#define KERNEL_MORPH_FUNCTION(functionA, functionB) \
+	[numthreads(8, 8, 1)] \
+	void functionA##To##functionB##Kernel (uint3 id: SV_DispatchThreadID) { \
+		float2 uv = GetUV(id); \
+		float3 position = lerp( \
+			functionA(uv.x, uv.y, _Time), functionB(uv.x, uv.y, _Time), \
+			_TransitionProgress \
+		); \
+		SetPosition(id, position); \
+	}
+
+
+KERNEL_FUNCTION(Wave)
+KERNEL_FUNCTION(MultiWave)
+KERNEL_FUNCTION(Ripple)
+KERNEL_FUNCTION(Circling)
+KERNEL_FUNCTION(Cylindering)
+KERNEL_FUNCTION(HourGlass)
+KERNEL_FUNCTION(Sphere)
+KERNEL_FUNCTION(VariedSphere)
+KERNEL_FUNCTION(TwistedSphere)
+KERNEL_FUNCTION(Torus)
+KERNEL_FUNCTION(MobiusStrip)
+
+
+KERNEL_MORPH_FUNCTION(Wave, MultiWave);
+KERNEL_MORPH_FUNCTION(Wave, Ripple);
+KERNEL_MORPH_FUNCTION(Wave, Circling);
+KERNEL_MORPH_FUNCTION(Wave, Cylindering);
+KERNEL_MORPH_FUNCTION(Wave, HourGlass);
+KERNEL_MORPH_FUNCTION(Wave, Sphere);
+KERNEL_MORPH_FUNCTION(Wave, VariedSphere);
+KERNEL_MORPH_FUNCTION(Wave, TwistedSphere);
+KERNEL_MORPH_FUNCTION(Wave, Torus);
+KERNEL_MORPH_FUNCTION(Wave, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(MultiWave, Wave);
+KERNEL_MORPH_FUNCTION(MultiWave, Ripple);
+KERNEL_MORPH_FUNCTION(MultiWave, Circling);
+KERNEL_MORPH_FUNCTION(MultiWave, Cylindering);
+KERNEL_MORPH_FUNCTION(MultiWave, HourGlass);
+KERNEL_MORPH_FUNCTION(MultiWave, Sphere);
+KERNEL_MORPH_FUNCTION(MultiWave, VariedSphere);
+KERNEL_MORPH_FUNCTION(MultiWave, TwistedSphere);
+KERNEL_MORPH_FUNCTION(MultiWave, Torus);
+KERNEL_MORPH_FUNCTION(MultiWave, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(Ripple, Wave);
+KERNEL_MORPH_FUNCTION(Ripple, MultiWave);
+KERNEL_MORPH_FUNCTION(Ripple, Circling);
+KERNEL_MORPH_FUNCTION(Ripple, Cylindering);
+KERNEL_MORPH_FUNCTION(Ripple, HourGlass);
+KERNEL_MORPH_FUNCTION(Ripple, Sphere);
+KERNEL_MORPH_FUNCTION(Ripple, VariedSphere);
+KERNEL_MORPH_FUNCTION(Ripple, TwistedSphere);
+KERNEL_MORPH_FUNCTION(Ripple, Torus);
+KERNEL_MORPH_FUNCTION(Ripple, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(Circling, Wave);
+KERNEL_MORPH_FUNCTION(Circling, MultiWave);
+KERNEL_MORPH_FUNCTION(Circling, Ripple);
+KERNEL_MORPH_FUNCTION(Circling, Cylindering);
+KERNEL_MORPH_FUNCTION(Circling, HourGlass);
+KERNEL_MORPH_FUNCTION(Circling, Sphere);
+KERNEL_MORPH_FUNCTION(Circling, VariedSphere);
+KERNEL_MORPH_FUNCTION(Circling, TwistedSphere);
+KERNEL_MORPH_FUNCTION(Circling, Torus);
+KERNEL_MORPH_FUNCTION(Circling, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(Cylindering, MultiWave);
+KERNEL_MORPH_FUNCTION(Cylindering, Ripple);
+KERNEL_MORPH_FUNCTION(Cylindering, Circling);
+KERNEL_MORPH_FUNCTION(Cylindering, Wave);
+KERNEL_MORPH_FUNCTION(Cylindering, HourGlass);
+KERNEL_MORPH_FUNCTION(Cylindering, Sphere);
+KERNEL_MORPH_FUNCTION(Cylindering, VariedSphere);
+KERNEL_MORPH_FUNCTION(Cylindering, TwistedSphere);
+KERNEL_MORPH_FUNCTION(Cylindering, Torus);
+KERNEL_MORPH_FUNCTION(Cylindering, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(HourGlass, Wave);
+KERNEL_MORPH_FUNCTION(HourGlass, MultiWave);
+KERNEL_MORPH_FUNCTION(HourGlass, Ripple);
+KERNEL_MORPH_FUNCTION(HourGlass, Circling);
+KERNEL_MORPH_FUNCTION(HourGlass, Cylindering);
+KERNEL_MORPH_FUNCTION(HourGlass, Sphere);
+KERNEL_MORPH_FUNCTION(HourGlass, VariedSphere);
+KERNEL_MORPH_FUNCTION(HourGlass, TwistedSphere);
+KERNEL_MORPH_FUNCTION(HourGlass, Torus);
+KERNEL_MORPH_FUNCTION(HourGlass, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(Sphere, Wave);
+KERNEL_MORPH_FUNCTION(Sphere, MultiWave);
+KERNEL_MORPH_FUNCTION(Sphere, Ripple);
+KERNEL_MORPH_FUNCTION(Sphere, Circling);
+KERNEL_MORPH_FUNCTION(Sphere, Cylindering);
+KERNEL_MORPH_FUNCTION(Sphere, HourGlass);
+KERNEL_MORPH_FUNCTION(Sphere, VariedSphere);
+KERNEL_MORPH_FUNCTION(Sphere, TwistedSphere);
+KERNEL_MORPH_FUNCTION(Sphere, Torus);
+KERNEL_MORPH_FUNCTION(Sphere, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(VariedSphere, Wave);
+KERNEL_MORPH_FUNCTION(VariedSphere, MultiWave);
+KERNEL_MORPH_FUNCTION(VariedSphere, Ripple);
+KERNEL_MORPH_FUNCTION(VariedSphere, Circling);
+KERNEL_MORPH_FUNCTION(VariedSphere, Cylindering);
+KERNEL_MORPH_FUNCTION(VariedSphere, HourGlass);
+KERNEL_MORPH_FUNCTION(VariedSphere, Sphere);
+KERNEL_MORPH_FUNCTION(VariedSphere, TwistedSphere);
+KERNEL_MORPH_FUNCTION(VariedSphere, Torus);
+KERNEL_MORPH_FUNCTION(VariedSphere, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(TwistedSphere, Wave);
+KERNEL_MORPH_FUNCTION(TwistedSphere, MultiWave);
+KERNEL_MORPH_FUNCTION(TwistedSphere, Ripple);
+KERNEL_MORPH_FUNCTION(TwistedSphere, Circling);
+KERNEL_MORPH_FUNCTION(TwistedSphere, Cylindering);
+KERNEL_MORPH_FUNCTION(TwistedSphere, HourGlass);
+KERNEL_MORPH_FUNCTION(TwistedSphere, Sphere);
+KERNEL_MORPH_FUNCTION(TwistedSphere, VariedSphere);
+KERNEL_MORPH_FUNCTION(TwistedSphere, Torus);
+KERNEL_MORPH_FUNCTION(TwistedSphere, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(Torus, Wave);
+KERNEL_MORPH_FUNCTION(Torus, MultiWave);
+KERNEL_MORPH_FUNCTION(Torus, Ripple);
+KERNEL_MORPH_FUNCTION(Torus, Circling);
+KERNEL_MORPH_FUNCTION(Torus, Cylindering);
+KERNEL_MORPH_FUNCTION(Torus, HourGlass);
+KERNEL_MORPH_FUNCTION(Torus, Sphere);
+KERNEL_MORPH_FUNCTION(Torus, VariedSphere);
+KERNEL_MORPH_FUNCTION(Torus, TwistedSphere);
+KERNEL_MORPH_FUNCTION(Torus, MobiusStrip);
+
+KERNEL_MORPH_FUNCTION(MobiusStrip, Wave);
+KERNEL_MORPH_FUNCTION(MobiusStrip, MultiWave);
+KERNEL_MORPH_FUNCTION(MobiusStrip, Ripple);
+KERNEL_MORPH_FUNCTION(MobiusStrip, Circling);
+KERNEL_MORPH_FUNCTION(MobiusStrip, Cylindering);
+KERNEL_MORPH_FUNCTION(MobiusStrip, HourGlass);
+KERNEL_MORPH_FUNCTION(MobiusStrip, Sphere);
+KERNEL_MORPH_FUNCTION(MobiusStrip, VariedSphere);
+KERNEL_MORPH_FUNCTION(MobiusStrip, TwistedSphere);
+KERNEL_MORPH_FUNCTION(MobiusStrip, Torus);
