@@ -1,5 +1,5 @@
 # Parametric-Surfaces
-featuring animated and optimized mathematical surfaces.
+Animated and optimized mathematical surfaces.
 
 <img src="/Assets/GIF/showcase.gif" alt="Parametric Surfaces" style="width: 70%">
 
