@@ -1,4 +1,4 @@
-# Parametric-Surfaces
+# Parametric Surfaces
 Animated and optimized mathematical surfaces.
 
 <img src="/Assets/GIF/showcase.gif" alt="Parametric Surfaces" style="width: 70%">
@@ -12,11 +12,14 @@ This is a short graphics exercise for studying the Unity engine, shader graph, a
 2. Run the .exe file to launch the application.
 
 ## Features
-- Mathematical Surfaces: Inlcuded a variety of mathematical surfaces which renders up to a million cubes.
+- Mathematical Surfaces: Inlcuded a variety of mathematical surfaces.
   
   <img src="/Assets/GIF/mstrip.gif" alt="Mobius Strip" style="width: 65%">
-- UI Implementation: Users can edit the resolution, the current mathematical surface, cycle, and duration in the build instead of using the inspector window in the editor.
+- Adjustable Resolution: The number of cubes in a surface can be adjusted up to a million cubes.
+
+  <img src="/Assets/GIF/resolution.gif" alt="resolution" style="width: 76%">
 - Spatial Position Coloring: Each cubes colors are determined by their world coordinates implpemented through a surface shader graph.
+- UI Implementation: Users can edit the resolution, the current mathematical surface, cycle, and duration in the build instead of using the inspector window in the editor.
 
 ## Getting Started
 To use in the Unity Editor:
