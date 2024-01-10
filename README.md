@@ -12,7 +12,7 @@ This is a short graphics exercise for studying the Unity engine, shader graph, a
 2. Run the .exe file to launch the application.
 
 ## Features
-- Mathematical Surfaces: Inlcuded a variety of mathematical surfaces.
+- Mathematical Surfaces: Included a variety of mathematical surfaces.
   
   <img src="/Assets/GIF/mstrip.gif" alt="Mobius Strip" style="width: 65%">
 - Adjustable Resolution: The number of cubes in a surface can be adjusted up to a million cubes.
